@@ -20,6 +20,7 @@ class DeckController extends Controller
     public function index(Request $request): View|Factory|Application
     {
         $decks = Deck::query()
+            ->where('delete_flag', false) // 削除されていないデータのみ取得
             ->when($request->search, function($query) use ($request) {
                 return $query->where('name', 'like', '%' . $request->search . '%');
             })
@@ -29,7 +30,7 @@ class DeckController extends Controller
     }
 
     /**
-     * デッキの新規登録
+     * デッキの新規登録画面の表示
      *
      * @return View
      */
@@ -39,7 +40,7 @@ class DeckController extends Controller
     }
 
     /**
-     * デッキの新規登録
+     * デッキの新規登録処理
      *
      * @param Request $request
      * @return RedirectResponse
@@ -58,6 +59,44 @@ class DeckController extends Controller
 
         // デッキ一覧ページにリダイレクト
         return redirect()->route('decks.create')->with('success', 'デッキを作成しました！');
+    }
+
+    /**
+     * デッキ名の更新画面表示
+     */
+    public function edit(Deck $deck)
+    {
+        return view('decks.edit', compact('deck')); // デッキ情報をビューに渡す
+    }
+
+    /**
+     * デッキ名の更新処理
+     */
+    public function update(Request $request, Deck $deck)
+    {
+        // バリデーション
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        // デッキ情報の更新
+        $deck->name = $request->input('name');
+        $deck->save(); // 更新を保存
+
+        return redirect()->route('decks.edit', $deck->id)->with('success', 'デッキが更新されました');
+    }      
+
+    /**
+     * デッキの削除処理
+     */
+    public function destroy(Deck $deck)
+    {
+        // 論理削除の実行
+        $deck->delete_flag = true; // もしくは適切な値に変更
+        $deck->save();
+
+        // リダイレクト処理
+        return redirect()->route('decks.index')->with('success', 'デッキが削除されました');
     }
 
 

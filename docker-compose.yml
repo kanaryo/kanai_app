@@ -21,6 +21,7 @@ services:
 #            - '.:/var/www/html'
             # artisanでファイルを作成した際に所有者をホストユーザ(kanai)に設定するために変更
             - .:/var/www/html:cached,delegated,uid=$(id -u),gid=$(id -g)
+            - ./php.ini:/etc/php/8.x/cli/php.ini
         networks:
             - sail
         depends_on:

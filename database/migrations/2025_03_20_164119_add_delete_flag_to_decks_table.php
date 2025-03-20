@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('decks', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('decks', function (Blueprint $table) {
+            $table->boolean('delete_flag')->default(false);  // 論理削除用のフラグ
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('decks');
+        Schema::table('decks', function (Blueprint $table) {
+            $table->dropColumn('delete_flag');  // カラムの削除
+        });
     }
 };

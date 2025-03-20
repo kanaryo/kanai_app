@@ -28,7 +28,15 @@ Route::prefix('decks')->name('decks.')->group(function () {
     Route::get('/', [DeckController::class, 'index'])->name('index');
     Route::get('/create', [DeckController::class, 'create'])->name('create');
     Route::post('/store', [DeckController::class, 'store'])->name('store');
+    Route::get('/{deck}/edit', [DeckController::class, 'edit'])->name('edit');
+    Route::put('/{deck}', [DeckController::class, 'update'])->name('update');
+    Route::delete('/{deck}', [DeckController::class, 'destroy'])->name('destroy');
 });
+
+Route::get('/debug', function () {
+    phpinfo();
+});
+
 
 
 require __DIR__.'/auth.php';

@@ -28,9 +28,9 @@
             <td>{{ $deck->name }}</td>
             <td>
                 <a href="#">学習開始</a>
-                <a href="#">詳細</a>
-                <a href="#">編集</a>
-                <form action="#" method="POST" style="display:inline;">
+                <a href="#">カード編集</a>
+                <a href="{{ route('decks.edit', $deck->id) }}">デッキ名変更</a>
+                <form action="{{ route('decks.destroy', $deck->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit">削除</button>
