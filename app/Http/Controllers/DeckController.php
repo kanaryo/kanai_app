@@ -100,4 +100,12 @@ class DeckController extends Controller
     }
 
 
+    /**
+     * デッキ内カードの一覧表示画面
+     */
+    public function show($deckId)
+    {
+        $deck = Deck::with('cards')->findOrFail($deckId);
+        return view('decks.show', compact('deck'));
+    }
 }

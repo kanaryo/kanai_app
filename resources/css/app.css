@@ -79,4 +79,71 @@
     background-color: darkred; /* ホバー時に少し暗い赤に変化 */
 }
 
+.container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.custom-form {
+    text-align: left; /* フォーム内の要素を左揃え */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-custom {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 0; /* 角をなくす */
+}
+
+.create-button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    text-align: center;
+    background-color: rgb(119, 202, 119);
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 8px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.create-button:hover {
+    background-color: darkgreen;
+}
+
+.btn-secondary {
+    display: block;           /* ブロック要素にして幅を持たせる */
+    width: 80%;               /* 横幅の調整 */
+    margin: 0 auto;
+    margin-top: 20px;         /* 上部にスペースを追加 */
+    text-align: center;       /* 文字を中央揃え */
+    background-color: gray;   /* 背景色を灰色にする */
+    color: white;             /* 文字色を白にする */
+    font-weight: bold;        /* 太字にする */
+    font-size: 12px;          /* 文字のサイズを小さくする */
+    padding: 8px 0;           /* 上下の余白を調整 */
+    border-radius: 10px;      /* 角を少し丸くする */
+    text-decoration: none;    /* リンクの下線を消す */
+}
+
+/* ホバー時のスタイル */
+.btn-secondary:hover {
+    background-color: darkgray; /* ホバー時に少し濃い灰色にする */
+}
+
 

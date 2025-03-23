@@ -10,4 +10,9 @@ class Deck extends Model
     use HasFactory;
 
     protected $fillable = ['name']; // nameを指定してデータの挿入を許可
+
+    public function cards()
+{
+    return $this->hasMany(Card::class);
+}
 }
