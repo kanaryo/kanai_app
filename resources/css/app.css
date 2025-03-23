@@ -1,3 +1,82 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.create-button {
+    display: block;           /* ブロック要素にして幅を持たせる */
+    width: 80%;              /* 横幅の調整 */
+    margin: 0 auto;
+    margin-top: 20px;  /* 上部に20pxのスペースを追加 */
+    text-align: center;       /* 文字を中央揃え */
+    background-color: rgb(119, 202, 119);  /* 背景色を緑にする */
+    color: white;             /* 文字色を白にする */
+    font-weight: bold;        /* 太字にする */
+    font-size: 12px;  /* 文字のサイズを小さくする */
+    padding: 8px 0;         /* 上下の余白を調整 */
+    border-radius: 10px;      /* 角を少し丸くする */
+    text-decoration: none;    /* リンクの下線を消す */
+}
+
+.create-button:hover {
+    background-color: darkgreen; /* ホバー時に濃い緑にする */
+}
+
+.decks-table {
+    border-collapse: collapse;  /* 枠線が重ならないようにする */
+    width: 80%;                 /* テーブルを画面幅いっぱいに広げる（必要なら） */
+    margin: 20px auto;        /* 上下にスペースを空け、左右を中央に配置 */
+
+}
+
+.decks-table, .decks-table th, .decks-table td {
+    border: 1px solid #d3d3d3; /* 枠線を灰色に設定 */
+    border-radius: 8px;        /* 角を丸くする */
+}
+
+.decks-table td {
+    padding: 10px;              /* セル内の余白を追加 */
+    text-align: center;        /* セル内の文字を中央揃え */
+}
+
+.decks-table a {
+    display: inline-block;
+    background-color: rgb(119, 202, 119);  /* 背景色を緑に */
+    color: white;                         /* 文字色を白に */
+    font-weight: bold;                    /* 太字 */
+    font-size: 12px;                      /* 小さな文字サイズ */
+    padding: 8px 15px;                    /* 上下左右の余白 */
+    border-radius: 10px;                  /* 角を丸く */
+    text-decoration: none;                /* 下線を消す */
+    margin: 5px;                          /* リンク間の間隔 */
+}
+
+.decks-table button.delete-btn {
+    display: inline-block;
+    background-color: rgb(119, 202, 119);  /* 背景色を緑に */
+    color: white;                         /* 文字色を白に */
+    font-weight: bold;                    /* 太字 */
+    font-size: 12px;                      /* 小さな文字サイズ */
+    padding: 8px 15px;                    /* 上下左右の余白 */
+    border-radius: 10px;                  /* 角を丸く */
+    border: none;                         /* ボタンの枠線を消す */
+    cursor: pointer;                     /* カーソルをポインターに */
+}
+
+/* 削除ボタン専用のスタイルを追加 */
+.decks-table button.delete-btn {
+    background-color: rgb(233, 86, 86);     /* 背景色を赤に変更 */
+    color: white;              /* 文字色を白に設定 */
+    font-weight: bold;         /* 太字 */
+    font-size: 12px;           /* 小さな文字サイズ */
+    padding: 8px 15px;         /* 上下左右の余白 */
+    border-radius: 10px;       /* 角を丸くする */
+    border: none;              /* ボタンの枠線を消す */
+    cursor: pointer;          /* カーソルをポインターに */
+}
+
+/* 削除ボタンのホバー時に色を変える */
+.decks-table button.delete-btn:hover {
+    background-color: darkred; /* ホバー時に少し暗い赤に変化 */
+}
+
+

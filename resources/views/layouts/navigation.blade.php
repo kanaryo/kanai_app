@@ -13,17 +13,13 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('デッキ一覧') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.index')">
-                        {{ __('Chirps') }}
-                    </x-nav-link>
+               
                     <x-nav-link :href="route('decks.create')" :active="request()->routeIs('decks.create')">
                         {{ __('デッキの新規登録') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('decks.index')" :active="request()->routeIs('decks.index')">
-                        {{ __('デッキ一覧') }}
-                    </x-nav-link>
+                
                 </div>
             </div>
 
