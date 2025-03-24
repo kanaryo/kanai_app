@@ -43,4 +43,24 @@ class LearningController extends Controller
             'currentCardIndex' => $currentCardIndex,
         ]);
     }
+
+    public function nextCard(Request $request, $deckId)
+{
+    $deck = Deck::findOrFail($deckId);
+    $cards = $deck->cards; // デッキに紐づくカードを取得
+
+    $currentCardIndex = $request->input('currentCardIndex', 0) + 1;
+
+    if ($currentCardIndex >= count($cards)) {
+        return response()->json(['completed' => true]);
+    }
+
+    $nextCard = $cards[$currentCardIndex];
+
+    return response()->json([
+        'currentCardIndex' => $currentCardIndex,
+        'front' => $nextCard->front,
+        'back' => $nextCard->back,
+    ]);
+}
 }

@@ -5,7 +5,7 @@
     <div class="flashcard bg-white p-6 rounded-lg shadow-lg">
         <!-- 学習進捗表示 -->
         <div class="progress mb-4 text-center">
-            <p class="text-lg">{{ $currentCardIndex + 1 }} / {{ count($cards) }} 枚目</p>
+        <p class="text-lg" id="progress-text"></p>
         </div>
 
         <!-- 表面 -->
@@ -37,36 +37,74 @@
     <div id="completion-message" style="display:none; margin-top: 20px;">
         <h3>お疲れ様でした！全てのカードを学習しました。</h3>
         <a href="{{ route('decks.index') }}" class="btn-secondary">デッキ一覧へ戻る</a>
-
     </div>
 </div>
 
 <script>
-    // 表面と裏面の切り替え
-    const toggleButton = document.getElementById('toggle-button');
-    const cardFront = document.getElementById('card-front');
-    const cardBack = document.getElementById('card-back');
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById('toggle-button');
+        const cardFront = document.getElementById('card-front');
+        const cardBack = document.getElementById('card-back');
+        const nextCardButton = document.getElementById('nextCardButton');
+        const completionMessage = document.getElementById('completion-message');
+        const flashcard = document.querySelector('.flashcard');
+        const progressText = document.getElementById('progress-text');
 
-    toggleButton.addEventListener('click', function () {
-        cardFront.style.display = cardFront.style.display === 'none' ? 'block' : 'none';
-        cardBack.style.display = cardBack.style.display === 'none' ? 'block' : 'none';
-        toggleButton.textContent = cardFront.style.display === 'none' ? '表面を表示' : '裏面を表示';
-    });
+        let currentCardIndex = {{ $currentCardIndex }};
+        const totalCards = {{ count($cards) }};
+        const deckId = {{ $deck->id }};
 
-    // 「次のカードへ進む」ボタンが押された時の処理
-    const nextCardButton = document.getElementById('nextCardButton');
-    const completionMessage = document.getElementById('completion-message');
-    const nextCardForm = document.getElementById('nextCardForm');
+        // 初期表示を設定
+        updateProgress();
 
-    nextCardButton.addEventListener('click', function(e) {
-        // 最後のカードの場合、フォーム送信を防止し、完了メッセージを表示する
-        if ({{ $currentCardIndex }} === {{ count($cards) - 1 }}) {
-            e.preventDefault();  // フォーム送信を防止
-            // カードを非表示にする
-            document.querySelector('.flashcard').style.display = 'none';
-            // 完了メッセージを表示
-            completionMessage.style.display = 'block';
+        toggleButton.addEventListener('click', function () {
+            cardFront.style.display = cardFront.style.display === 'none' ? 'block' : 'none';
+            cardBack.style.display = cardBack.style.display === 'none' ? 'block' : 'none';
+            toggleButton.textContent = cardFront.style.display === 'none' ? '表面を表示' : '裏面を表示';
+        });
+
+        nextCardButton.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            if (currentCardIndex >= totalCards - 1) {
+                flashcard.style.display = 'none';
+                completionMessage.style.display = 'block';
+                return;
+            }
+
+            fetch(`/learning/next/${deckId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ currentCardIndex })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.completed) {
+                    flashcard.style.display = 'none';
+                    completionMessage.style.display = 'block';
+                } else {
+                    currentCardIndex = data.currentCardIndex;
+                    cardFront.innerHTML = `<p class="text-xl">${data.front}</p>`;
+                    cardBack.innerHTML = `<p class="text-xl">${data.back}</p>`;
+                    cardBack.style.display = 'none';
+                    cardFront.style.display = 'block';
+                    toggleButton.textContent = '裏面を表示';
+
+                    // 進捗表示を更新
+                    updateProgress();
+                }
+            })
+            .catch(error => console.error('エラー:', error));
+        });
+
+        function updateProgress() {
+            progressText.textContent = `${currentCardIndex + 1} / ${totalCards} 枚目`;
         }
     });
 </script>
+
+
 @endsection

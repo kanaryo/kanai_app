@@ -55,6 +55,9 @@ Route::prefix('decks/{deck}')->group(function () {
     Route::post('learning/next', [LearningController::class, 'next'])->name('learning.next');
 });
 
+Route::post('/learning/next/{deck}', [LearningController::class, 'nextCard'])->name('learning.next');
+
+
 
 
 Route::get('/debug', function () {
