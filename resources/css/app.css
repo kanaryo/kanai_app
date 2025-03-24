@@ -146,4 +146,50 @@ label {
     background-color: darkgray; /* ホバー時に少し濃い灰色にする */
 }
 
+/* カードのスタイル */
+.flashcard {
+    @apply bg-white p-6 rounded-lg shadow-lg;
+}
 
+/* ボタン共通 */
+.create-button {
+    @apply block w-4/5 mx-auto text-center bg-green-500 text-white font-bold text-xs py-2 rounded-lg no-underline cursor-pointer;
+}
+
+.create-button:hover {
+    @apply bg-green-700;
+}
+
+/* デッキ一覧ボタン */
+.btn-secondary {
+    @apply block w-4/5 mx-auto text-center bg-gray-500 text-white font-bold text-xs py-2 rounded-lg no-underline;
+}
+
+.btn-secondary:hover {
+    @apply bg-gray-700;
+}
+
+/* カードの面 */
+.card-face {
+    @apply mb-4 text-xl;
+}
+
+/* 学習進捗表示 */
+.progress {
+    @apply mb-4 text-center;
+}
+
+/* 表面と裏面の切り替えボタン */
+#toggle-button {
+    @apply create-button mb-4;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .create-button {
+        @apply w-4/5;
+    }
+    .btn-secondary {
+        @apply w-4/5;
+    }
+}
