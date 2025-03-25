@@ -31,6 +31,6 @@
         @endforeach
     </tbody>
 </table>
-<a href="{{ route('decks.index') }}" class="btn btn-secondary">デッキ一覧画面へ戻る</a>
+<a href="{{ route('decks.index') }}" class="btn btn-secondary">デッキ一覧へ戻る</a>
 
 @endsection
