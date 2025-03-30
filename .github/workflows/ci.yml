@@ -59,6 +59,20 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
         run: php artisan migrate --force
+    
+          # Node.js のセットアップ
+      - name: Node.js のセットアップ
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # npm パッケージのインストール
+      - name: npm パッケージのインストール
+        run: npm install
+
+      # Vite のビルド
+      - name: Vite ビルド
+        run: npm run build
 
       - name: PHPUnit テストの実行
         env:
