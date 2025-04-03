@@ -6,6 +6,14 @@
 デッキの新規作成
 </a>
 
+<!-- 検索フォーム -->
+<div class="search-container">
+<form action="{{ route('decks.index') }}" method="GET">
+    <input type="text" name="search" placeholder="デッキ名を検索" value="{{ request('search') }}" class="search-input">
+    <button type="submit" class="search-button">検索</button>
+</form>
+</div>
+
 
 <!-- デッキ一覧 -->
 <table border="1" class="decks-table">

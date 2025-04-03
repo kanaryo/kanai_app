@@ -193,3 +193,45 @@ label {
         @apply w-4/5;
     }
 }
+
+/* 検索フォームのデザイン */
+.search-form {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    
+}
+
+/* 検索入力ボックス */
+.search-input {
+    width: 60%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    
+}
+
+/* 検索ボタン */
+.search-button {
+    padding: 8px 15px;
+    background-color: rgb(119, 202, 119);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ホバー時の色変更 */
+.search-button:hover {
+    background-color: darkgreen;
+}
+
+/* 検索フォームのコンテナを中央に配置 */
+.search-container {
+    display: flex;
+    justify-content: center; /* 水平方向の中央配置 */
+
+}
