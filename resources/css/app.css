@@ -235,3 +235,50 @@ label {
     justify-content: center; /* 水平方向の中央配置 */
 
 }
+
+/* フォーム全体を中央配置 */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 水平方向の中央配置 */
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* 入力ボックスのスタイル */
+.input-custom {
+    width: 80%; /* 幅を80%に広げる */
+    max-width: 800px; /* 最大幅を800pxに設定 */
+    padding: 12px; /* 余白を増やす */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px; /* 下の要素との間隔 */
+}
+
+/* ボタンのスタイル */
+.submit-button {
+    padding: 12px 20px;
+    background-color: rgb(119, 202, 119);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ホバー時の色変更 */
+.submit-button:hover {
+    background-color: darkgreen;
+}
+
+/* フォームタイトルのスタイル */
+.form-title {
+    font-size: 24px;            /* 大きめのフォントサイズ */
+    font-weight: bold;          /* 太字 */
+    color: rgb(119, 202, 119);  /* フォームのボタンと同じ緑色 */
+    text-align: center;         /* 中央揃え */
+    margin-bottom: 20px;        /* 下の要素との間隔 */
+    font-family: 'Arial', sans-serif; /* フォントファミリーの指定 */
+}
